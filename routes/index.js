@@ -1,4 +1,4 @@
-const middleware     = require('@line/bot-sdk').middleware
+const line           = require('@line/bot-sdk');
 const bodyParser     = require('body-parser');
 
 const line_webhook   = require('./line_webhook');
@@ -7,17 +7,14 @@ const lineConfig     = require('../keys/lineKey.json');
 
 module.exports = function(app, db) {
 
-  app.use('/line_webhook', middleware(lineConfig))
-  app.use(bodyParser.json())
+  app.use('/line_webhook', line.middleware(lineConfig));
+  app.use(bodyParser.json());
 
-  app.post('/line_webhook', (req, res) => {
-    line_webhook({ app, db, req, res });
-  });
+  const client = new line.Client(lineConfig);
+  line_webhook(app, db, client);
 
-  app.post('/webhook', (req, res) => {
-    webhook({ app, db, req, res });
-  });
-  
+  webhook(app, db);
+
   // Other route groups could go here, in the future
 
 };

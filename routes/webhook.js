@@ -1,6 +1,6 @@
-module.exports = function(input) {
-  const {req, res, app, db} = input;
-
-  console.log(req.body)
-  res.send("Hello")
+module.exports = function(app, db) {
+  app.post('/webhook', (req, res) => {
+    console.log(req.body)
+    res.send("Hello")
+  });
 };
