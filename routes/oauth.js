@@ -7,7 +7,9 @@ const oauth2Client = new google.auth.OAuth2(
   googleClient.redirect_uris
 );
 
-const SCOPES = ['https://www.googleapis.com/auth/forms', 'https://www.googleapis.com/auth/script.external_request', 'https://www.googleapis.com/auth/script.scriptapp'];
+const SCOPES = ['https://www.googleapis.com/auth/forms',
+  'https://www.googleapis.com/auth/script.external_request',
+  'https://www.googleapis.com/auth/script.scriptapp'];
 
 module.exports = function(app, db) {
 

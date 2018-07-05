@@ -94,16 +94,36 @@ module.exports = function(app, db, client) {
 
   // Normal Message Event
 
-  BotModule.hears(/[Hh]elp|幫助|功能/, (event) => {
+  BotModule.hears(/[Hh]elp(?!er)|幫助|功能/, (event) => {
     return replyMessage(event.replyToken, "如果要找我，在對話框中打'@Helper'&指示，就可以了!\n\n\
 我的功能列表如下：\n\
-=> 查詢功能：功能/幫助/Help\n\
-=> 更改暱稱：更改/Change\n\
-=> 呼叫表單：表單/Form\n\
-=> 查詢狀況：狀況/Status\n\
+=> 功能說明：功能/幫助/Help\n\
+=> 更改名稱：更改/Change\n\
+=> 表單列表：表單/Form\n\
+=> 列車成員：狀況/Status\n\
 => 加入列車：加入/Join\n\
-=> 退出列車：離開/Leave\n\n\
+=> 退出列車：離開/Leave\n\
+=> 聚會內容：聚會/團契/Fellowship\n\
 另外我在群組&私訊都可以運作喔，如果不希望在群組加入/退出列車，歡迎加我好友&私訊我喔！");
+  });
+
+  BotModule.hears(/[Cc]heat/, (event) => {
+    return BotModule.formUpdate();
+  });
+
+  BotModule.hears(/[Ff]ellowship|團契|聚會/, (event) => {
+    return replyMessage(event.replyToken, `<7月聚會>
+
+7/7 (六) 14:30 - 17:30
+迎新聚會 - 信權哥
+
+7/14 (六) 暫停一次
+
+7/21 (六) 14:30 - 17:30
+桌遊大賽 - 玲安姐
+
+7/28 (六) 14:30 - 17:30
+弟兄會/姊妹會 - TBD`);
   });
 
   BotModule.hears(/[Jj]oin|加入|上車/, (event) => {
@@ -155,18 +175,58 @@ module.exports = function(app, db, client) {
   BotModule.hears(/[Ff]orm|表單/, (event) => {
     return replyMessage(event.replyToken, {
       "type": "template",
-      "altText": "表單連結：https://goo.gl/forms/6Zu6kKf4aR0UczAH3",
+      "altText": "表單列表",
       "template": {
-        "type": "buttons",
-        "text": "真愛團契經文列車",
-        "thumbnailImageUrl": "https://lh3.googleusercontent.com/sg8XyC-IuDLkm27UpOPbbat1q3S2trJu85TGVuWeDLtVs5bKXbZxcLcOhJSZDGoi4zil98WBww",
-        "actions": [
-          {
-            "type": "uri",
-            "label": "開啟經文表單",
-            "uri": "https://goo.gl/forms/6Zu6kKf4aR0UczAH3"
-          }
-        ]
+          "type": "carousel",
+          "columns": [
+              {
+                "title": "真愛團契經文列車",
+                "text": "如果你被點到要換你分享，這個就是你在找的表單！",
+                "thumbnailImageUrl": "https://lh3.googleusercontent.com/sg8XyC-IuDLkm27UpOPbbat1q3S2trJu85TGVuWeDLtVs5bKXbZxcLcOhJSZDGoi4zil98WBww",
+                "actions": [
+                  {
+                    "type": "uri",
+                    "label": "開啟列車表單",
+                    "uri": "https://goo.gl/forms/kjbMg4ErNcORrvJq2"
+                  }
+                ]
+              }, {
+                "title": "真愛團契經文分享",
+                "text": "如果你只是純粹想分享經文，這個就是你在找的表單！",
+                "thumbnailImageUrl": "https://lh4.googleusercontent.com/hj5hpyIqwsOe1Me_-n0CcsBXmzu73O4ovTcGfzyBxft5Hb1Cuve86Oy-T-FQRZ-JAThVvupITw",
+                "actions": [
+                  {
+                    "type": "uri",
+                    "label": "開啟分享表單",
+                    "uri": "https://goo.gl/forms/7MrLKkW6celt2Usq1"
+                  }
+                ]
+              }, {
+                "title": "真愛團契 開坑版",
+                "text": "如果你想主揪大家一起出去玩、做專案或靈修，就快來開坑吧！",
+                "thumbnailImageUrl": "https://lh5.googleusercontent.com/4swe3F_ah8mfdx7m2KPJK5XMaCPnjsKvufVxlRbsWGZFpNa12lpbKJQXBJwJO0VHz7DAJ5ES0A",
+                "actions": [
+                  {
+                    "type": "uri",
+                    "label": "開啟開坑版",
+                    "uri": "https://goo.gl/forms/NdKY6RnNUu0AT8bI3"
+                  }
+                ]
+              }, {
+                "title": "真愛團契 許願版",
+                "text": "如果你有想做什麼，但不想或沒空主揪，就來許願看看有沒有人願意負責吧！",
+                "thumbnailImageUrl": "https://lh3.googleusercontent.com/Aqe4SHJKsJxq1ermBrJXvtl7FZV1XxgelXivrSQWiVlTS-kkgqRY2vHCYThYbZt9quiuqUZUvA",
+                "actions": [
+                  {
+                    "type": "uri",
+                    "label": "開啟許願版",
+                    "uri": "https://goo.gl/forms/lV5ZrWD9XFVCFLJh1"
+                  }
+                ]
+              }
+          ],
+          "imageAspectRatio": "rectangle",
+          "imageSize": "cover"
       }
     });
   });
