@@ -12,6 +12,7 @@
     "@line/bot-sdk": "^6.1.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
+    "firebase-admin": "^5.12.1",
     "fs": "0.0.1-security",
     "https": "^1.0.0"
   },
