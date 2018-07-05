@@ -1,6 +1,6 @@
-const BotModule = require('../bot_module');
-
 module.exports = function(app, db, client) {
+
+  const BotModule = require('../bot_module')(db);
 
   app.post('/webhook', (req, res) => {
     BotModule.trigger(req.body.trigger, req.body);
@@ -36,8 +36,6 @@ module.exports = function(app, db, client) {
     message +=`\n<${payload.origin}>\n${payload.verse}`;
     message += (payload.comments == '') ? '' : `\n\n心得:\n${payload.comments}`;
 
-    announce(message);
-
     usersRef.where('username', '==', payload.name).get().then((qSnapshot) => {
       qSnapshot.forEach((userDoc) => {
         const user = userDoc.data();
@@ -49,11 +47,17 @@ module.exports = function(app, db, client) {
         });
       });
     });
+
+    announce(message).then(() => {
+      BotModule.formUpdate();
+    });
+
     return true;
   });
 
   BotModule.on('onDailyReminder', (payload) => {
     const statusRef = db.collection('biblebot').doc('status');
+    BotModule.formUpdate();
     return statusRef.get().then((snapshot) => {
       const status = snapshot.data();
       const userRef = db.collection('users').doc(status.nextUserId);
@@ -82,7 +86,7 @@ module.exports = function(app, db, client) {
   function announce(message){
     const groupsRef = db.collection('groups');
 
-    groupsRef.get().then((qSnapshot) => {
+    return groupsRef.get().then((qSnapshot) => {
       qSnapshot.forEach((groupDoc) => {
         const group = groupDoc.data();
         pushMessage(group.id, message).then(() => {

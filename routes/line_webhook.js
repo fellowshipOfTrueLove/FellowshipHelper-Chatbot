@@ -1,9 +1,8 @@
-const BotModule = require('../bot_module');
-
 module.exports = function(app, db, client) {
 
+  const BotModule = require('../bot_module')(db);
+
   app.post('/line_webhook', (req, res) => {
-    BotModule.scriptFunction(db, "16XC8Hjw3iPWVx6zoeQEKya3507Sq21RlWcyya4eDWwHsNM-mA1p05EOu", "refresh")
     const { events } = req.body;
     events.forEach((event) => {
       if (event.type === 'message') {
@@ -116,6 +115,7 @@ module.exports = function(app, db, client) {
         if (event.source.type != "user" && !profile.isFriend) {
           response += "\n\n請記得加我好友，我才能寄給你提醒訊息喔！"
         }
+        BotModule.formUpdate();
         return replyMessage(event.replyToken, response);
       });
     });
@@ -126,6 +126,7 @@ module.exports = function(app, db, client) {
       var userRef = db.collection('users').doc(profile.userId);
       return userRef.update({isEnabled: false}).then(function() {
         var response = profile.username + "，\n謝謝您搭乘經文列車!\n讓我們有空時再會!";
+        BotModule.formUpdate();
         return replyMessage(event.replyToken, response);
       });
     });
@@ -240,6 +241,7 @@ ${profile.username}，你在找我嗎？
           var userRef = db.collection('users').doc(event.source.userId);
           return userRef.update({chatState: 'normal', username: data.name}).then(function() {
             var response = data.name + "，\n你的暱稱更新完成了！";
+            BotModule.formUpdate();
             return replyMessage(event.replyToken, response);
           });
         } else {
@@ -253,6 +255,7 @@ ${profile.username}，你在找我嗎？
           response = data.name + "，\n歡迎搭乘金句列車!\n讓我們啟航吧!";
         }
         return userRef.update({isEnabled: data.result}).then(function() {
+          BotModule.formUpdate();
           return replyMessage(event.replyToken, response);
         });
       }
@@ -313,4 +316,6 @@ ${profile.username}，你在找我嗎？
     localProfile.remindCount = 0;
     return db.collection('users').doc(profile.userId).set(profile).then(() => localProfile);
   }
+
+
 };

@@ -1,7 +1,8 @@
 const EventEmitter = require('./event_emitter');
 const GoogleScript = require('./google_script');
+const FormUpdate   = require('./form_update');
 
-var BotModule = (function (){
+function BotModule(db){
 
   return {
     trigger: (eventName, ...args) => {
@@ -23,10 +24,13 @@ var BotModule = (function (){
       });
     },
     scriptFunction: (...args) => {
-      GoogleScript(...args)
+      GoogleScript(db, ...args)
+    },
+    formUpdate: () => {
+      FormUpdate(db)
     },
   };
 
-})();
+};
 
 module.exports =  BotModule;
