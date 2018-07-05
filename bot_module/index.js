@@ -15,11 +15,10 @@ var BotModule = (function (){
     },
     hears(pattern, handler) {
       EventEmitter.addListener('message', (event) => {
-        if (pattern.test(event.message.text)) {
-          handler(event);
-          return true
-        }
-        return false
+        if (!pattern.test(event.message.text)) return false;
+
+        handler(event);
+        return true;
       });
     },
   };

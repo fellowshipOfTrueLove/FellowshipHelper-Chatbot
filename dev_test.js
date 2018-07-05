@@ -22,6 +22,13 @@ const client = {
     return {
       catch: () => {}
     }
+  },
+  pushMessage: (token, message) => {
+    console.log("Push Message: " + JSON.stringify(message));
+
+    return {
+      catch: () => {}
+    }
   }
 };
 

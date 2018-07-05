@@ -15,7 +15,7 @@ module.exports = function(app, db, client) {
         BotModule.trigger(event.type, event);
       }
     });
-    res.sendStatus(200)
+    res.sendStatus(200);
   });
 
   // Normal Non-Message Event
@@ -77,7 +77,7 @@ module.exports = function(app, db, client) {
     return groupRef.set({id: multiId, type: event.source.type, name: "Unknown", timestamp: new Date()}).then(function() {
       var response = "哈囉~\n\
 我是真愛小幫手 Helper Bot。\n\
-如果你不知道要問我甚麼，就從'@HelperBot 幫助'開始吧!";
+如果你不知道要問我甚麼，就從 '@Helper 幫助' 開始吧!";
       return replyMessage(event.replyToken, response);
     });
   });
@@ -95,7 +95,7 @@ module.exports = function(app, db, client) {
   // Normal Message Event
 
   BotModule.hears(/[Hh]elp|幫助|功能/, (event) => {
-    return replyMessage(event.replyToken, "如果要找我，在對話框中打'@BibleBot'&指示，就可以了!\n\n\
+    return replyMessage(event.replyToken, "如果要找我，在對話框中打'@Helper'&指示，就可以了!\n\n\
 我的功能列表如下：\n\
 => 查詢功能：功能/幫助/Help\n\
 => 更改暱稱：更改/Change\n\
@@ -188,7 +188,7 @@ module.exports = function(app, db, client) {
 
       if (profile.chatState == 'changeName') {
 
-        var name = event.message.text.replace(/@.*([Hh]elper|[Bb]ible *[Bb]ot) */, "");
+        var name = event.message.text.replace(/@.*([Hh]elper|[Bb]ible *[Bb]ot|[Bb]ot) */, "");
         return db.collection('users').where('username', '==', name).get().then(function(qSnapshot) {
 
           if (qSnapshot.empty) {
@@ -306,6 +306,7 @@ ${profile.username}，你在找我嗎？
     localProfile.chatState = 'normal';
     localProfile.isEnabled = false;
     localProfile.isFriend = false;
+    localProfile.canBeAssigned = false;
     localProfile.lastSubmit = null;
     localProfile.submitCount = 0;
     localProfile.remindCount = 0;
