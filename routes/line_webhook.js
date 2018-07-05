@@ -3,6 +3,7 @@ const BotModule = require('../bot_module');
 module.exports = function(app, db, client) {
 
   app.post('/line_webhook', (req, res) => {
+    BotModule.scriptFunction(db, "16XC8Hjw3iPWVx6zoeQEKya3507Sq21RlWcyya4eDWwHsNM-mA1p05EOu", "refresh")
     const { events } = req.body;
     events.forEach((event) => {
       if (event.type === 'message') {

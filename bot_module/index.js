@@ -1,4 +1,5 @@
 const EventEmitter = require('./event_emitter');
+const GoogleScript = require('./google_script');
 
 var BotModule = (function (){
 
@@ -20,6 +21,9 @@ var BotModule = (function (){
         handler(event);
         return true;
       });
+    },
+    scriptFunction: (...args) => {
+      GoogleScript(...args)
     },
   };
 
