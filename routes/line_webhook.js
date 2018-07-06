@@ -103,7 +103,7 @@ module.exports = function(app, db, client) {
 => 列車成員：狀況/Status\n\
 => 加入列車：加入/Join\n\
 => 退出列車：離開/Leave\n\
-=> 聚會內容：聚會/團契/Fellowship\n\
+=> 聚會內容：聚會/Fellowship\n\n\
 另外我在群組&私訊都可以運作喔，如果不希望在群組加入/退出列車，歡迎加我好友&私訊我喔！");
   });
 
@@ -202,24 +202,24 @@ module.exports = function(app, db, client) {
                   }
                 ]
               }, {
-                "title": "真愛團契 開坑版",
-                "text": "如果你想主揪大家一起出去玩、做專案或靈修，就快來開坑吧！",
+                "title": "真愛團契 開坑許願版",
+                "text": "如果你想主揪大家一起出去玩、做專案或靈修，就快來開坑或許願吧！",
                 "thumbnailImageUrl": "https://lh5.googleusercontent.com/4swe3F_ah8mfdx7m2KPJK5XMaCPnjsKvufVxlRbsWGZFpNa12lpbKJQXBJwJO0VHz7DAJ5ES0A",
                 "actions": [
                   {
                     "type": "uri",
-                    "label": "開啟開坑版",
+                    "label": "開啟開坑/許願版",
                     "uri": "https://goo.gl/forms/NdKY6RnNUu0AT8bI3"
                   }
                 ]
               }, {
-                "title": "真愛團契 許願版",
-                "text": "如果你有想做什麼，但不想或沒空主揪，就來許願看看有沒有人願意負責吧！",
+                "title": "真愛團契 都給你問",
+                "text": "若生活實踐信仰有遇到困難，或讀經讀出神學問題，真愛眾多輔導/講員都給你問！",
                 "thumbnailImageUrl": "https://lh3.googleusercontent.com/Aqe4SHJKsJxq1ermBrJXvtl7FZV1XxgelXivrSQWiVlTS-kkgqRY2vHCYThYbZt9quiuqUZUvA",
                 "actions": [
                   {
                     "type": "uri",
-                    "label": "開啟許願版",
+                    "label": "開啟都給你問表單",
                     "uri": "https://goo.gl/forms/lV5ZrWD9XFVCFLJh1"
                   }
                 ]
