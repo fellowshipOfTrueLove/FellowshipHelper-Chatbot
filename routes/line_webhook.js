@@ -112,18 +112,39 @@ module.exports = function(app, db, client) {
   });
 
   BotModule.hears(/[Ff]ellowship|團契|聚會/, (event) => {
-    return replyMessage(event.replyToken, `<7月聚會>
+    var scheduleRef = db.collection('schedule');
+    var currentDate = new Date();
+    currentDate.setDate(currentDate.getDate() - 1);
+    return scheduleRef.where('date', '>', currentDate).orderBy('date').limit(4)
+      .get().then(function(qSnapshot) {
 
-7/7 (六) 14:30 - 17:30
-迎新聚會 - 信權哥
+      let response = "[未來聚會]"
+      qSnapshot.forEach(function(scheduleDoc) {
+        let schedule = scheduleDoc.data();
+        response += "\n\n" + (schedule.date.getMonth() + 1) + "/" +
+                      schedule.date.getDate() +" (六)  "+ schedule.type;
+        response += "\n" + schedule.topic;
+        if(schedule.moderator) response += " (" + schedule.moderator +")\n"
 
-7/14 (六) 暫停一次
+        if(!schedule.isCanceled){
 
-7/21 (六) 14:30 - 17:30
-桌遊大賽 - 玲安姐
+          response += "領會：";
+          if(schedule.worshipLeader){
+            response += schedule.worshipLeader;
+          }else{
+            response += "缺"
+          }
 
-7/28 (六) 14:30 - 17:30
-弟兄會/姊妹會 - TBD`);
+          response += "\n司琴：";
+          if(schedule.worshipPianist){
+            response += schedule.worshipPianist;
+          }else{
+            response += "缺"
+          }
+        }
+      });
+      return replyMessage(event.replyToken, response);
+    });
   });
 
   BotModule.hears(/[Jj]oin|加入|上車/, (event) => {
@@ -181,7 +202,7 @@ module.exports = function(app, db, client) {
           "columns": [
               {
                 "title": "真愛團契 經文列車",
-                "text": "(聖穎施工中)",
+                "text": "想聽聽別人怎麼解讀聖經？平常也想體驗小組查經？歡迎搭乘經文列車！",
                 "thumbnailImageUrl": "https://lh3.googleusercontent.com/sg8XyC-IuDLkm27UpOPbbat1q3S2trJu85TGVuWeDLtVs5bKXbZxcLcOhJSZDGoi4zil98WBww",
                 "actions": [
                   {
@@ -203,7 +224,7 @@ module.exports = function(app, db, client) {
                 ]
               }, {
                 "title": "真愛團契 開坑許願",
-                "text": "開坑任我行，許願你負責!",
+                "text": "開坑任我行，許願你負責!快來揪你自己想開的團吧～",
                 "thumbnailImageUrl": "https://lh5.googleusercontent.com/4swe3F_ah8mfdx7m2KPJK5XMaCPnjsKvufVxlRbsWGZFpNa12lpbKJQXBJwJO0VHz7DAJ5ES0A",
                 "actions": [
                   {
