@@ -81,6 +81,21 @@ module.exports = function(app, db, client) {
     });
   });
 
+  BotModule.on('onScheduleUpdate', (payload) => {
+    const scheduleRef = db.collection('schedule');
+    let schedules = payload.schedule;
+
+    var batch = db.batch();
+
+    schedules.forEach((schedule) =>{
+      let docRef = scheduleRef.doc(schedule.uid);
+      schedule.date = new Date(schedule.date);
+      batch.set(docRef, schedule);
+    });
+
+    return batch.commit();
+  });
+
   // Functions
 
   function announce(message){

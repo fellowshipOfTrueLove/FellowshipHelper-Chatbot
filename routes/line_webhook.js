@@ -180,46 +180,46 @@ module.exports = function(app, db, client) {
           "type": "carousel",
           "columns": [
               {
-                "title": "真愛團契經文列車",
-                "text": "如果你被點到要換你分享，這個就是你在找的表單！",
+                "title": "真愛團契 經文列車",
+                "text": "(聖穎施工中)",
                 "thumbnailImageUrl": "https://lh3.googleusercontent.com/sg8XyC-IuDLkm27UpOPbbat1q3S2trJu85TGVuWeDLtVs5bKXbZxcLcOhJSZDGoi4zil98WBww",
                 "actions": [
                   {
                     "type": "uri",
-                    "label": "開啟列車表單",
+                    "label": "開啟表單",
                     "uri": "https://goo.gl/forms/kjbMg4ErNcORrvJq2"
                   }
                 ]
               }, {
-                "title": "真愛團契經文分享",
-                "text": "如果你只是純粹想分享經文，這個就是你在找的表單！",
+                "title": "真愛團契 經文分享",
+                "text": "車太慢，想分享找不到人?沒關係，還有AI陪你，邊緣人的路上你不孤獨!",
                 "thumbnailImageUrl": "https://lh4.googleusercontent.com/hj5hpyIqwsOe1Me_-n0CcsBXmzu73O4ovTcGfzyBxft5Hb1Cuve86Oy-T-FQRZ-JAThVvupITw",
                 "actions": [
                   {
                     "type": "uri",
-                    "label": "開啟分享表單",
+                    "label": "開啟表單",
                     "uri": "https://goo.gl/forms/7MrLKkW6celt2Usq1"
                   }
                 ]
               }, {
-                "title": "真愛團契 開坑許願版",
-                "text": "如果你想主揪大家一起出去玩、做專案或靈修，就快來開坑或許願吧！",
+                "title": "真愛團契 開坑許願",
+                "text": "開坑任我行，許願你負責!",
                 "thumbnailImageUrl": "https://lh5.googleusercontent.com/4swe3F_ah8mfdx7m2KPJK5XMaCPnjsKvufVxlRbsWGZFpNa12lpbKJQXBJwJO0VHz7DAJ5ES0A",
                 "actions": [
                   {
                     "type": "uri",
-                    "label": "開啟開坑/許願版",
+                    "label": "開啟表單",
                     "uri": "https://goo.gl/forms/NdKY6RnNUu0AT8bI3"
                   }
                 ]
               }, {
                 "title": "真愛團契 都給你問",
-                "text": "若生活實踐信仰有遇到困難，或讀經讀出神學問題，真愛眾多輔導/講員都給你問！",
+                "text": "無法理解神？無法明白長老的話？聖經不用硬記，盡量虐輔導吧～都給你問！",
                 "thumbnailImageUrl": "https://lh3.googleusercontent.com/Aqe4SHJKsJxq1ermBrJXvtl7FZV1XxgelXivrSQWiVlTS-kkgqRY2vHCYThYbZt9quiuqUZUvA",
                 "actions": [
                   {
                     "type": "uri",
-                    "label": "開啟都給你問表單",
+                    "label": "開啟表單",
                     "uri": "https://goo.gl/forms/lV5ZrWD9XFVCFLJh1"
                   }
                 ]
