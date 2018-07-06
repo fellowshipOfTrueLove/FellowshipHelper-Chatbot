@@ -173,6 +173,12 @@ module.exports = function(app, db, client) {
     });
   });
 
+  BotModule.hears(/[Aa]nnounce(ment)?/, (event) => {
+    var message = "[系統公告]\n"+event.message.text.replace(/[Aa]nnounce(ment)?\s*/, "");
+    announce(message);
+    return true;
+  });
+
   BotModule.hears(/[Ss]tatus|狀況/, (event) => {
     return db.collection('biblebot').doc('status').get().then(function(snapshot) {
       var status = snapshot.data();
@@ -345,6 +351,26 @@ ${profile.username}，你在找我嗎？
   });
 
   // Functions
+
+  function announce(message){
+    const groupsRef = db.collection('groups');
+
+    return groupsRef.get().then((qSnapshot) => {
+      qSnapshot.forEach((groupDoc) => {
+        const group = groupDoc.data();
+        pushMessage(group.id, message).then(() => {
+          console.log(`Post delivered to ${group.name}`);
+        });
+      });
+    });
+  }
+
+  function pushMessage(recieverId, message) {
+    return client.pushMessage(recieverId, processMessage(message))
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   function replyMessage(replyToken, message) {
     client.replyMessage(replyToken, processMessage(message)).catch((err) => {
