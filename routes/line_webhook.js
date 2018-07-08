@@ -114,7 +114,6 @@ module.exports = function(app, db, client) {
   BotModule.hears(/[Ff]ellowship|團契|聚會/, (event) => {
     var scheduleRef = db.collection('schedule');
     var currentDate = new Date();
-    currentDate.setDate(currentDate.getDate() - 1);
     return scheduleRef.where('date', '>', currentDate).orderBy('date').limit(4)
       .get().then(function(qSnapshot) {
 
