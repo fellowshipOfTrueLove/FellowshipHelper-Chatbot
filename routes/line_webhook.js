@@ -111,7 +111,7 @@ module.exports = function(app, db, client) {
     return BotModule.formUpdate();
   });
 
-  BotModule.hears(/[Ff]ellowship|團契|聚會/, (event) => {
+  BotModule.hears(/[Ff]ellowship|[Ss]chedule|團契|聚會/, (event) => {
     var scheduleRef = db.collection('schedule');
     var currentDate = new Date();
     return scheduleRef.where('date', '>', currentDate).orderBy('date').limit(4)
@@ -123,11 +123,11 @@ module.exports = function(app, db, client) {
         response += "\n\n" + (schedule.date.getMonth() + 1) + "/" +
                       schedule.date.getDate() +" (六)  "+ schedule.type;
         response += "\n" + schedule.topic;
-        if(schedule.moderator) response += " (" + schedule.moderator +")\n"
+        if(schedule.moderator) response += " (" + schedule.moderator +")"
 
         if(!schedule.isCanceled){
 
-          response += "領會：";
+          response += "\n領會：";
           if(schedule.worshipLeader){
             response += schedule.worshipLeader;
           }else{
