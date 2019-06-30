@@ -1,8 +1,8 @@
 
 const scriptFunction = require('./google_script');
 
-const scriptList = ["16XC8Hjw3iPWVx6zoeQEKya3507Sq21RlWcyya4eDWwHsNM-mA1p05EOu",
-        "1DAzgWAKWB6SR3YoStltMVTvwl8soYgsGsuwPQUO3SPLxQx0MUybUAh2d"];
+const scriptList = ["1hGHmoyy6WyIRTWR3ph6FC9-jne7yWydfrCLltQf8cjYx36_5ig6JYn0J",
+        "1pnk9fcRby59fLPB3C0sQXD6O_06Mg33pJBPh01CypUzBgJ5k2MqmVvpE"];
 
 function FormUpdate(db){
   const usersRef = db.collection('users');
