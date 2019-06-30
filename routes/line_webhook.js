@@ -74,7 +74,13 @@ module.exports = function(app, db, client) {
     }
 
     var groupRef = db.collection('groups').doc(multiId);
-    return groupRef.set({id: multiId, type: event.source.type, name: "Unknown", timestamp: new Date()}).then(function() {
+    return groupRef.set({
+      id: multiId,
+      type: event.source.type,
+      valid: true,
+      name: "Unknown",
+      timestamp: new Date()
+    }).then(function() {
       var response = "哈囉~\n\
 我是真愛小幫手 Helper Bot。\n\
 如果你不知道要問我甚麼，就從 '@Helper 幫助' 開始吧!";
@@ -357,9 +363,11 @@ ${profile.username}，你在找我嗎？
     return groupsRef.get().then((qSnapshot) => {
       qSnapshot.forEach((groupDoc) => {
         const group = groupDoc.data();
-        pushMessage(group.id, message).then(() => {
-          console.log(`Post delivered to ${group.name}`);
-        });
+        if ( group.valid ) {
+          pushMessage(group.id, message).then(() => {
+            console.log(`Post delivered to ${group.name}`);
+          });
+        }
       });
     });
   }

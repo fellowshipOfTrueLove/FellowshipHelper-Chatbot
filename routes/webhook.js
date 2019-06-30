@@ -104,9 +104,11 @@ module.exports = function(app, db, client) {
     return groupsRef.get().then((qSnapshot) => {
       qSnapshot.forEach((groupDoc) => {
         const group = groupDoc.data();
-        pushMessage(group.id, message).then(() => {
-          console.log(`Post delivered to ${group.name}`);
-        });
+        if ( group.valid ) {
+          pushMessage(group.id, message).then(() => {
+            console.log(`Post delivered to ${group.name}`);
+          });
+        }
       });
     });
   }
