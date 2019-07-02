@@ -219,7 +219,7 @@ module.exports = function(app, db, client) {
                   {
                     "type": "uri",
                     "label": "開啟表單",
-                    "uri": "https://goo.gl/forms/kjbMg4ErNcORrvJq2"
+                    "uri": "https://forms.gle/aZqSnShVZMdF7r2X8"
                   }
                 ]
               }, {
@@ -230,29 +230,7 @@ module.exports = function(app, db, client) {
                   {
                     "type": "uri",
                     "label": "開啟表單",
-                    "uri": "https://goo.gl/forms/7MrLKkW6celt2Usq1"
-                  }
-                ]
-              }, {
-                "title": "真愛團契 開坑許願",
-                "text": "開坑任我行，許願你負責!快來揪你自己想開的團吧～",
-                "thumbnailImageUrl": "https://lh5.googleusercontent.com/4swe3F_ah8mfdx7m2KPJK5XMaCPnjsKvufVxlRbsWGZFpNa12lpbKJQXBJwJO0VHz7DAJ5ES0A",
-                "actions": [
-                  {
-                    "type": "uri",
-                    "label": "開啟表單",
-                    "uri": "https://goo.gl/forms/NdKY6RnNUu0AT8bI3"
-                  }
-                ]
-              }, {
-                "title": "真愛團契 都給你問",
-                "text": "無法理解神？無法明白長老的話？聖經不用硬記，盡量虐輔導吧～都給你問！",
-                "thumbnailImageUrl": "https://lh3.googleusercontent.com/Aqe4SHJKsJxq1ermBrJXvtl7FZV1XxgelXivrSQWiVlTS-kkgqRY2vHCYThYbZt9quiuqUZUvA",
-                "actions": [
-                  {
-                    "type": "uri",
-                    "label": "開啟表單",
-                    "uri": "https://goo.gl/forms/lV5ZrWD9XFVCFLJh1"
+                    "uri": "https://forms.gle/DUk2tGPkCNhK3MQn8"
                   }
                 ]
               }
